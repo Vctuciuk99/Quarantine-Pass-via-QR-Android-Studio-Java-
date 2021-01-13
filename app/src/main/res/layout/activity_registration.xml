@@ -6,126 +6,185 @@
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Please provide infromation needed below"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/Register_Firsname"
-        android:layout_width="263dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Firstname"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/Register_EMAIL"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_EMAIL"
-        app:layout_constraintTop_toBottomOf="@+id/Register_EMAIL" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
-    <EditText
-        android:id="@+id/Register_EMAIL"
-        android:layout_width="264dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Please provide infromation needed below"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/Register_Middlename"
-        android:layout_width="263dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Middlename (optional)"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Firsname"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_Firsname"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Firsname" />
+            <EditText
+                android:id="@+id/Register_EMAIL"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="88dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <EditText
-        android:id="@+id/Register_Lastname"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Lastname"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Middlename"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_Middlename"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Middlename" />
+            <EditText
+                android:id="@+id/Register_Firsname"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:ems="10"
+                android:hint="Firstname"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_EMAIL"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_EMAIL"
+                app:layout_constraintTop_toBottomOf="@+id/Register_EMAIL" />
 
-    <EditText
-        android:id="@+id/Register_ContactNumber"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Contact number"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Lastname"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_Lastname"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Lastname" />
+            <EditText
+                android:id="@+id/Register_Lastname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Lastname"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Middlename"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_Middlename"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Middlename" />
 
-    <EditText
-        android:id="@+id/Register_Address"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/Register_ContactNumber"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_ContactNumber"
-        app:layout_constraintTop_toBottomOf="@+id/Register_ContactNumber" />
+            <EditText
+                android:id="@+id/Register_ContactNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Contact number"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Lastname"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_Lastname"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Lastname" />
 
-    <EditText
-        android:id="@+id/Register_Password"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Address"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_Address"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Address" />
+            <EditText
+                android:id="@+id/Register_Middlename"
+                android:layout_width="0dp"
+                android:layout_height="47dp"
+                android:ems="10"
+                android:hint="Middlename (optional)"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Firsname"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_Firsname"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Firsname" />
 
-    <Button
-        android:id="@+id/btnREGISTER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Password"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/Register_Password"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Password" />
+            <EditText
+                android:id="@+id/Register_Province"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Province"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_ContactNumber"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_ContactNumber"
+                app:layout_constraintTop_toBottomOf="@+id/Register_ContactNumber" />
 
-    <CheckBox
-        android:id="@+id/CB_CheckPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Password"
-        app:layout_constraintEnd_toEndOf="@+id/Register_Password"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Register_Password"
-        app:layout_constraintTop_toBottomOf="@+id/Register_Password" />
+            <EditText
+                android:id="@+id/Register_Password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="@+id/Register_StreetNumber"
+                app:layout_constraintStart_toStartOf="@+id/Register_StreetNumber"
+                app:layout_constraintTop_toBottomOf="@+id/Register_StreetNumber" />
+
+            <Button
+                android:id="@+id/btnREGISTER"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Register"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Password"
+                app:layout_constraintStart_toStartOf="@+id/Register_Password"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Password" />
+
+            <CheckBox
+                android:id="@+id/CB_CheckPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Password"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Password"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Register_Password"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Password" />
+
+            <EditText
+                android:id="@+id/Register_Municipality"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Municipality or City"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Province"
+                app:layout_constraintStart_toStartOf="@+id/Register_Province"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Province" />
+
+            <EditText
+                android:id="@+id/Register_Brgy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Barangay"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Municipality"
+                app:layout_constraintStart_toStartOf="@+id/Register_Municipality"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Municipality" />
+
+            <EditText
+                android:id="@+id/Register_StreetNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Street Name or House Number"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/Register_Brgy"
+                app:layout_constraintStart_toStartOf="@+id/Register_Brgy"
+                app:layout_constraintTop_toBottomOf="@+id/Register_Brgy" />
+
+            <TextView
+                android:id="@+id/AccId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnREGISTER"
+                app:layout_constraintHorizontal_bias="0.478"
+                app:layout_constraintStart_toStartOf="@+id/btnREGISTER"
+                app:layout_constraintTop_toBottomOf="@+id/btnREGISTER"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
