@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "414574411322",
+    "project_id": "covid-quarantine-pass-via-qr",
+    "storage_bucket": "covid-quarantine-pass-via-qr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414574411322:android:a8b432f6be9e8d43757f03",
+        "android_client_info": {
+          "package_name": "com.example.q_passaccount"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414574411322-9p9t28rf6in5b4se57i0k9or3q95h069.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtef23aO4MOAfxqgF3qSB4Yh4c962b_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414574411322-9p9t28rf6in5b4se57i0k9or3q95h069.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
