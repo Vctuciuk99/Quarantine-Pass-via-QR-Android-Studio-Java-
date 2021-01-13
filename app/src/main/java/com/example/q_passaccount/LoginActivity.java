@@ -29,9 +29,11 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //TODO LOGIN FUNCTION HERE
+
             }
-        });
+        });//TODO LOGIN FUNCTION HERE
+
+
         //button to trigger register function
         register.setOnClickListener(new View.OnClickListener() {
             @Override

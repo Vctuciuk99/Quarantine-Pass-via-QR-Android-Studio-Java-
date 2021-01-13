@@ -1,7 +1,5 @@
 package com.example.q_passaccount;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,8 +14,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,7 +35,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -40,11 +44,11 @@ public class RegistrationActivity extends AppCompatActivity {
     Button Register;
     CheckBox ShowPassword;
     ImageView imageView;
-    Uri uri;
+    //Uri uri;
 
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User Data");
-    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("User QR Code/");
+
 
 
     @Override
@@ -120,13 +124,29 @@ public class RegistrationActivity extends AppCompatActivity {
         } else if (Password.length()<=6) {
             Password.setError("Invalid Password");
         } else {
-            QRGenerator();
-            AuthenticateUser();
-
+            RegisterUser();
         }
     }//TODO update information validation using firebase and add password confirmation
-    //QR Code Generator
-   private void QRGenerator(){
+
+    //Register user Email and password
+    private void RegisterUser(){
+        String email = Email.getText().toString();
+        String password = Password.getText().toString();
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()){
+                    Toast.makeText(RegistrationActivity.this, "Email is invalid or taken by someone else", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    SaveUserInformation();
+                }
+            }
+        });
+    }
+
+    //Save User Infromation To FireBase
+    private void SaveUserInformation(){
         //Uri QrUrl = uri;
         String email = Email.getText().toString();
         String fname = Fname.getText().toString();
@@ -138,57 +158,28 @@ public class RegistrationActivity extends AppCompatActivity {
         String barangay = Barangay.getText().toString();
         String street = Street.getText().toString();
         String password = Password.getText().toString();
-       // String qrcodeurl = QrUrl.toString();
+        //String qrcodeurl = QrUrl.toString();
 
         String id = databaseReference.push().getKey();
         UserData userData = new UserData(email, fname, mname, lname, contact, province, municipality, barangay, street, password);
         databaseReference.child(id).setValue(userData);
         AccId.setText(id);
+        QRGenerator();
+    }
+    //QR Code Generator
+    private void QRGenerator(){
         String Value = AccId.getText().toString();
-
-       MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-       try{//generate QR code
-           BitMatrix bitMatrix = multiFormatWriter.encode(Value, BarcodeFormat.QR_CODE,500,500);
-           BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try{//generate QR code
+            BitMatrix bitMatrix = multiFormatWriter.encode(Value, BarcodeFormat.QR_CODE,500,500);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             final Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-           imageView.setImageBitmap(bitmap);
-
-            Bitmap qrcode = ((BitmapDrawable)imageView.getBackground()).getBitmap();
-
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            qrcode.compress(Bitmap.CompressFormat.JPEG, 100 ,stream);
-            byte[] byte_arr = stream.toByteArray();
-
-            UploadTask uploadTask = storageReference.putBytes(byte_arr);
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                }
-            });
-
+            imageView.setImageBitmap(bitmap);
+            //TODO Pang try ko lang ung imageview dito di pa to final
        }catch (Exception e){
            e.printStackTrace();
        }
 
     }
-    private void AuthenticateUser(){
-
-
-    }
 
 }
-//        FRAAAAAANZZZZZZZ
-//
-//                FRAAAAAANZZZZZZZ
-//        FRAAAAAANZZZZZZZ
-//                FRAAAAAANZZZZZZZ
-//        FRAAAAAANZZZZZZZ
-//                FRAAAAAANZZZZZZZ
-//        FRAAAAAANZZZZZZZ
