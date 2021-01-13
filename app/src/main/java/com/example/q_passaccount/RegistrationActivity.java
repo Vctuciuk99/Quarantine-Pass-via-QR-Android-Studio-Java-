@@ -180,6 +180,10 @@ public class RegistrationActivity extends AppCompatActivity {
     }
     private void AuthenticateUser(){
 
+
+    }
+
+}
 //        FRAAAAAANZZZZZZZ
 //
 //                FRAAAAAANZZZZZZZ
@@ -188,6 +192,3 @@ public class RegistrationActivity extends AppCompatActivity {
 //        FRAAAAAANZZZZZZZ
 //                FRAAAAAANZZZZZZZ
 //        FRAAAAAANZZZZZZZ
-    }
-
-}
