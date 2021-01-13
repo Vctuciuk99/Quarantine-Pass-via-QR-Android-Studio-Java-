@@ -179,7 +179,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
     private void AuthenticateUser(){
-
+//        FRAAAAAANZZZZZZZ
+//
+//                FRAAAAAANZZZZZZZ
+//        FRAAAAAANZZZZZZZ
+//                FRAAAAAANZZZZZZZ
+//        FRAAAAAANZZZZZZZ
+//                FRAAAAAANZZZZZZZ
+//        FRAAAAAANZZZZZZZ
     }
 
 }
