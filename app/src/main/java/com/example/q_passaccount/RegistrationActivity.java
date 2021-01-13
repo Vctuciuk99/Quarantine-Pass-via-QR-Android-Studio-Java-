@@ -1,9 +1,7 @@
 package com.example.q_passaccount;
 
-import android.content.Intent;
+
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -20,21 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-
-import java.io.ByteArrayOutputStream;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -44,12 +36,9 @@ public class RegistrationActivity extends AppCompatActivity {
     Button Register;
     CheckBox ShowPassword;
     ImageView imageView;
-    //Uri uri;
 
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User Data");
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +121,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void RegisterUser(){
         String email = Email.getText().toString();
         String password = Password.getText().toString();
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
