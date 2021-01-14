@@ -13,7 +13,7 @@ public class UserData {
     String Barangay;
     String Street;
     String Password;
-    String QRCodeUrl;
+    String QRCode_Url;
 
 
     public String getEmail() {
@@ -96,11 +96,18 @@ public class UserData {
         Password = password;
     }
 
+    public String getQRCode_Url() {
+        return QRCode_Url;
+    }
+
+    public void setQRCode_Url(String QRCode_Url) {
+        this.QRCode_Url = QRCode_Url;
+    }
 
     public UserData (String Email, String First_name, String Middle_name,
                      String Last_name, String Contact_Info, String Province,
                      String Municipality, String Barangay, String Street,
-                     String Password){
+                     String Password , String QRCode_Url){
         this.Email = Email;
         this.First_name = First_name;
         this.Middle_name = Middle_name;
@@ -111,6 +118,7 @@ public class UserData {
         this.Barangay = Barangay;
         this.Street = Street;
         this.Password = Password;
+        this.QRCode_Url = QRCode_Url;
 
 
 
