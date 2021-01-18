@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,19 +41,15 @@ import java.io.ByteArrayOutputStream;
 public class RegistrationActivity extends AppCompatActivity {
 
     //Declaring Variables
-    EditText Email, Fname, Mname, Lname, Contact, Province, Municipality, Barangay, Street, Password;
-    Button Register;
-    CheckBox ShowPassword;
-    String uid;
-    ProgressDialog progressDialog;
+    private EditText Email, Fname, Mname, Lname, Contact, Province, Municipality, Barangay, Street, Password;
+    private Button Register;
+    private CheckBox ShowPassword;
+    private String uid;
+    private ProgressDialog progressDialog;
 
-    FirebaseUser firebaseUser;
-    FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
-
-
-
-
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,49 +91,65 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    //Register user Account
     public void NullRestriction(){
+        String email = Email.getText().toString().trim();
+        String contact = Contact.getText().toString().trim();
 
         if (Email.length() == 0) {
             Email.setError("Please Enter your Email");
             Email.requestFocus();
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Email.setError("Invalid Email address");
+                Email.requestFocus();
+            }
+            return;
         } else if (Fname.length() == 0) {
             Fname.setError("Please Enter your Firstname");
             Fname.requestFocus();
-        } else if (Mname.length() == 0) {
-            Mname.setText("NMN");
+            return;
         } else if (Lname.length() == 0) {
             Lname.setError("Please Enter your Lastname");
             Lname.requestFocus();
-        } else if (Contact.length() != 11) {
+            return;
+        } else if (Contact.length() == 0) {
             Contact.setError("Invalid Contact Number");
             Contact.requestFocus();
+            return;
         } else if (Province.length() == 0) {
             Province.setError("Please Enter you Address");
             Province.requestFocus();
+            return;
         } else if (Municipality.length() == 0) {
             Municipality.setError("Please Enter you Address");
             Municipality.requestFocus();
+            return;
         } else if (Barangay.length() == 0) {
             Barangay.setError("Please Enter you Address");
             Barangay.requestFocus();
+            return;
         } else if (Street.length() == 0) {
             Street.setError("Please Enter you Address");
             Street.requestFocus();
+            return;
         } else if (Password.length() <= 6) {
             Password.setError("Invalid Password");
+            return;
         } else {
             RegisterUser();
             progressDialog = new ProgressDialog(RegistrationActivity.this);
             progressDialog.show();
-            progressDialog.setContentView(R.layout.progress_dialog);
+            progressDialog.setContentView(R.layout.register_progress_dialog);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            return;
         }
 
-    }
+    }//TODO improve restriction using firebase
+    //Register User information
    private void RegisterUser(){
         String email = Email.getText().toString();
         String password = Password.getText().toString();
+
+        //Email and password authentication
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -177,24 +186,29 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                         //Get the string value for each input
                                         Uri QrUrl = uri;
-                                        String email = Email.getText().toString();
-                                        String fname = Fname.getText().toString();
-                                        String mname = Mname.getText().toString();
-                                        String lname = Lname.getText().toString();
-                                        String contact = Contact.getText().toString();
-                                        String province = Province.getText().toString();
-                                        String municipality = Municipality.getText().toString();
-                                        String barangay = Barangay.getText().toString();
-                                        String street = Street.getText().toString();
-                                        String password = Password.getText().toString();
+                                        String email = Email.getText().toString().trim();
+                                        String fname = Fname.getText().toString().trim();
+                                        String mname = Mname.getText().toString().trim();
+                                        String lname = Lname.getText().toString().trim();
+                                        String contact = Contact.getText().toString().trim();
+                                        String province = Province.getText().toString().trim();
+                                        String municipality = Municipality.getText().toString().trim();
+                                        String barangay = Barangay.getText().toString().trim();
+                                        String street = Street.getText().toString().trim();
+                                        String password = Password.getText().toString().trim();
                                         String qrcodeurl = QrUrl.toString();
 
                                         UserData userData = new UserData(email, fname, mname, lname, contact, province, municipality, barangay, street, password ,qrcodeurl);
                                         databaseReference.child(uid).setValue(userData);
                                         progressDialog.dismiss();
+                                        firebaseAuth.signOut();
                                         Toast.makeText(RegistrationActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent home = new Intent(RegistrationActivity.this, HomeActivity.class);
+
+                                        //Open HomeActivity when registration was success
+                                        Intent home = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(home);
+
                                         finish();
                                     }
                                 });
