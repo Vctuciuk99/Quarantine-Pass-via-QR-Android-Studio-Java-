@@ -69,6 +69,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         else{
             UserLogin();
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.show();
+            progressDialog.setContentView(R.layout.login_progress_dialog);
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
     }//Open register activity
@@ -85,13 +89,17 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                //Check if user entered Valid credentials
                 if (task.isSuccessful()){
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(LoginActivity.this, "Log-in successfully", Toast.LENGTH_SHORT).show();
                     startActivity(home);
                     finish();
+                    progressDialog.dismiss();
                 }
                 else {
+                    progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
                 }
             }
