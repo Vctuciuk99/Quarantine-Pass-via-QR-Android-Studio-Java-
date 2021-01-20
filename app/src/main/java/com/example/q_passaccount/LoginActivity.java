@@ -94,9 +94,9 @@ public class LoginActivity extends AppCompatActivity {
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     Toast.makeText(LoginActivity.this, "Log-in successfully", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                     startActivity(home);
                     finish();
-                    progressDialog.dismiss();
                 }
                 else {
                     progressDialog.dismiss();
@@ -105,5 +105,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+        super.onBackPressed();
     }
 }

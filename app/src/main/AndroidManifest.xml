@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QPassAccount">
-        <activity android:name=".AccountActivity"></activity>
+        <activity android:name=".AddWidget"></activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".Update_InfoActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".AccountActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegistrationActivity" />

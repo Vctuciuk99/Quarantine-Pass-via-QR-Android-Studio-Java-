@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,9 +42,8 @@ import java.io.ByteArrayOutputStream;
 public class RegistrationActivity extends AppCompatActivity {
 
     //Declaring Variables
-    private EditText Email, Fname, Mname, Lname, Contact, Province, Municipality, Barangay, Street, Password;
+    private TextInputLayout Email, Fname, Mname, Lname, Contact, Province, Municipality, Barangay, Street, Password;
     private Button Register;
-    private CheckBox ShowPassword;
     private String uid;
     private ProgressDialog progressDialog;
 
@@ -58,29 +58,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //Assigning Variables
         Email = findViewById(R.id.Register_EMAIL);
-        Fname = findViewById(R.id.Register_Firsname);
+        Fname = findViewById(R.id.Register_Firstname);
         Mname = findViewById(R.id.Register_Middlename);
         Lname = findViewById(R.id.Register_Lastname);
         Contact = findViewById(R.id.Register_ContactNumber);
         Province = findViewById(R.id.Register_Province);
         Municipality = findViewById(R.id.Register_Municipality);
-        Barangay  = findViewById(R.id.Register_Brgy);
-        Street = findViewById(R.id.Register_StreetNumber);
+        Barangay  = findViewById(R.id.Register_Barangay);
+        Street = findViewById(R.id.Register_Street);
         Password = findViewById(R.id.Register_Password);
-        Register = findViewById(R.id.btnREGISTER);
-        ShowPassword = findViewById(R.id.CB_CheckPass);
-
-        //Show Password using checkbox
-        ShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-                if (b) {
-                    Password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-            }
-        });
+        Register = findViewById(R.id.Register);
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,46 +79,39 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void NullRestriction(){
-        String email = Email.getText().toString().trim();
-        String contact = Contact.getText().toString().trim();
-
-        if (Email.length() == 0) {
+        if (Email.getEditText().length() == 0) {
             Email.setError("Please Enter your Email");
             Email.requestFocus();
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Email.setError("Invalid Email address");
-                Email.requestFocus();
-            }
             return;
-        } else if (Fname.length() == 0) {
+        } else if (Fname.getEditText().length() == 0) {
             Fname.setError("Please Enter your Firstname");
             Fname.requestFocus();
             return;
-        } else if (Lname.length() == 0) {
+        } else if (Lname.getEditText().length() == 0) {
             Lname.setError("Please Enter your Lastname");
             Lname.requestFocus();
             return;
-        } else if (Contact.length() == 0) {
+        } else if (Contact.getEditText().length() == 0) {
             Contact.setError("Invalid Contact Number");
             Contact.requestFocus();
             return;
-        } else if (Province.length() == 0) {
+        } else if (Province.getEditText().length() == 0) {
             Province.setError("Please Enter you Address");
             Province.requestFocus();
             return;
-        } else if (Municipality.length() == 0) {
+        } else if (Municipality.getEditText().length() == 0) {
             Municipality.setError("Please Enter you Address");
             Municipality.requestFocus();
             return;
-        } else if (Barangay.length() == 0) {
+        } else if (Barangay.getEditText().length() == 0) {
             Barangay.setError("Please Enter you Address");
             Barangay.requestFocus();
             return;
-        } else if (Street.length() == 0) {
+        } else if (Street.getEditText().length() == 0) {
             Street.setError("Please Enter you Address");
             Street.requestFocus();
             return;
-        } else if (Password.length() <= 6) {
+        } else if (Password.getEditText().length() <= 6) {
             Password.setError("Invalid Password");
             return;
         } else {
@@ -143,11 +123,11 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
-    }//TODO improve restriction using firebase
+    }//TODO improve restriction here
     //Register User information
-   private void RegisterUser(){
-        String email = Email.getText().toString();
-        String password = Password.getText().toString();
+    private void RegisterUser(){
+        String email = Email.getEditText().getText().toString();
+        String password = Password.getEditText().getText().toString();
 
         //Email and password authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -186,16 +166,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                         //Get the string value for each input
                                         Uri QrUrl = uri;
-                                        String email = Email.getText().toString().trim();
-                                        String fname = Fname.getText().toString().trim();
-                                        String mname = Mname.getText().toString().trim();
-                                        String lname = Lname.getText().toString().trim();
-                                        String contact = Contact.getText().toString().trim();
-                                        String province = Province.getText().toString().trim();
-                                        String municipality = Municipality.getText().toString().trim();
-                                        String barangay = Barangay.getText().toString().trim();
-                                        String street = Street.getText().toString().trim();
-                                        String password = Password.getText().toString().trim();
+                                        String email = Email.getEditText().getText().toString().trim();
+                                        String fname = Fname.getEditText().getText().toString().trim();
+                                        String mname = Mname.getEditText().getText().toString().trim();
+                                        String lname = Lname.getEditText().getText().toString().trim();
+                                        String contact = Contact.getEditText().getText().toString().trim();
+                                        String province = Province.getEditText().getText().toString().trim();
+                                        String municipality = Municipality.getEditText().getText().toString().trim();
+                                        String barangay = Barangay.getEditText().getText().toString().trim();
+                                        String street = Street.getEditText().getText().toString().trim();
+                                        String password = Password.getEditText().getText().toString().trim();
                                         String qrcodeurl = QrUrl.toString();
 
                                         UserData userData = new UserData(email, fname, mname, lname, contact, province, municipality, barangay, street, password ,qrcodeurl);
@@ -241,4 +221,3 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 }
-

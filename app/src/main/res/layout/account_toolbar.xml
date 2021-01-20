@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#0ebccf"
     android:elevation="4dp"
-    app:title="My Quarantine pass"
+    app:title="Account Information"
     android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 

@@ -10,7 +10,7 @@
         android:layout_width="204dp"
         android:layout_height="152dp"
         android:fontFamily="@font/anton"
-        android:text="QR Based Quarantin Pass"
+        android:text="Quarantine Pass Via QR Code"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
